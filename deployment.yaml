@@ -1,0 +1,20 @@
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: mycomplaintsnew
+ spec:
+   replicas: 5
+   selector:
+     matchLabels:
+       app: mycomplaints
+   template:
+     metadata:
+       labels:
+         app: mycomplaints
+     spec:
+       containers:
+       - name: mycomplaints
+         image: jp.icr.io/mycomplaints/complaintsmanagement
+         imagePullPolicy: Always
+         ports: 
+         - containerPort: 5000

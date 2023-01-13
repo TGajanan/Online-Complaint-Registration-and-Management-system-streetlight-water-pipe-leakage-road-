@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>view.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+        *{
+            font-family: 'Roboto', sans-serif;
+            padding:0;
+            margin:0;
+            border:0
+        }
+        section {
+            padding: 80px;
+            padding-bottom: 80px;
+        }
+       *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+       } 
+       body{
+            background-color: #ffffff;
+        }
+
+        .row {
+            background-color: rgb(202, 232, 223);
+            border-radius: 20px;
+            box-shadow: 12px 12px 22px grey;
+            --bs-gutter-x: 12rem;
+            padding: 5px;
+
+        }
+        img {
+            padding: 0px;
+            /* border-top-left-radius: 100px;
+            border-bottom-left-radius: 100px; */
+        }
+        .btn1 {
+            padding: 14px 32px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn1-primary {
+            background-color: #9FE2BF ;
+            border-color: #9FE2BF;
+            border-radius: 100px;
+        } 
+        .btn1-primary:hover {
+         background-color: transparent;
+        }
+       
+        .content-table{
+            border-collapse: collapse;
+            /* margin: 25px 0; */
+            font-size: 1em;
+            min-width: 800px;
+            border-radius: 5px 5px 0 0;
+            /* overflow: hidden; */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            /* border: 2px solid rgb(11, 11, 11) */
+        }
+
+        .content-table thead tr{
+            background-color: #9FE2BF;
+            color: #0b0a0a;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            /* border: px solid black; */
+            
+        }
+
+        /* .content-table th */
+        .content-table td{
+            padding: 12px 15px;
+            border: 1px solid rgb(161, 224, 227)
+        }
+
+        .content-table tbody tr{
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .content-table tbody tr:nth-of-type(even){
+            background-color: #f3f3f3;
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: 2px solid #9FE2BF;
+        }
+
+        .content-table tbody tr .active-row{
+            font-weight: bold;
+            color:#9FE2BF;
+            border: 1px solid black;
+            border-collapse:collapse;
+        }
+        #tableHead{
+            padding: 10px;
+            text-align: center;
+        }
+
+
+    </style>
+  </head>
+  <body>
+    <!--navigation bar-->
+    <nav class="navbar navbar-light" style="background-color: #D6EAF8;">
+        <div class="container">            
+          <a class="navbar-brand" href="#">Online Complaints management system</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class='bx bxs-home-smile' ></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home"><i class='bx bxs-user-plus'></i>Post complaints</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="user">
+                        <div class="user-icon"></div>
+                         <a class="nav-link" href="/logout"><i class='bx bx-log-out'>Logout</i></a>
+                        </div>                
+                    </li>
+                
+                </ul>
+            </div>
+        </div>
+    </nav>    
+
+    
+
+    <div class="table-container mt-5 mb-5 w-75 mx-auto" >
+        <div class="row no-gutters">
+        <h5 class="text-center mb-3  p-2 text-dark" style="font-weight: bold;">List of Complaints Raised</h5>
+        <table class="content-table">
+            <!-- <caption style="font-weight: bold;">List of Complaints Raised</caption> -->
+            <thead class="text-white" id="tableHead">
+                <tr>
+                <th scope="col">Sr No</th>
+                <th scope="col">Your Uploaded Image</th>
+                <th scope="col">Image After Completion of work</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Partner Name</th>
+                <th scope="col">Work Status</th>
+                <th scope="col">Feedback</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tbody>
+                    {%- for row in rows %}
+                    <tr class="active-row">
+                        <th scope="row">{{loop.index}}</th>
+                        <td><img src="https://s3.jp-tok.cloud-object-storage.appdomain.cloud/complaints/{{row['TITLE']}}.jpg" class="card-img-top" alt="Your uploaded image" height="250"></td>
+                        <td><img src="https://s3.jp-tok.cloud-object-storage.appdomain.cloud/complaints/{{row['IMAGE_ID']}}.jpg" class="card-img-top" alt="Image will be uploaded soon" height="250"></td>
+                        <td>{{row['TITLE']}}</td>
+                        <td>{{row['DESCRIPTION']}}</td>
+                        <td>{{row['ASSIGNED']}}</td>
+                        <td>{{row['PROGRESS']}}</td>
+                        <!-- <td><a href="https://form.jotform.com/223611887326460"><button class="btn btn-outline-success">Feedback Form</button></a></div></td> -->
+                        <td><a href="{{form}}"><button class="btn btn-outline-success">Feedback Form</button></a></div></td>
+                    </tr>
+                    {%- endfor %}
+                </tbody>
+            </tbody>
+        </div>
+        </table>
+
+    </div>
+
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+     crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" 
+     integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" 
+     crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script>$(window).scroll(function() {
+
+        if($(window).scrollTop() > 0) {
+            $('.navbar').css('background', '#9FE2BF');
+        }
+        else {
+            $('.navbar').css('background', 'transparent');
+        }
+        });
+    </script>
+
+  </body>
+</html>
