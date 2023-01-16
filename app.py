@@ -270,9 +270,10 @@ def home():
                 print(data)
                 print("Latest USERID:", data)
                 # data1 = str(data['USERID'])
+                os.mkdir('userupload') 
                 basepath=os.path.dirname(__file__) #getting the current path i.e where app.py is present
                 #print("current path",basepath)
-                filepath=os.path.join(basepath,'useruploads','.jpg') #from anywhere in the system we can give image but we want that image later  to process so we are saving it to uploads folder for reusing
+                filepath=os.path.join(basepath,'userupload','.jpg') #from anywhere in the system we can give image but we want that image later  to process so we are saving it to uploads folder for reusing
                 #print("upload folder is",filepath)
                 f.save(filepath)
                 cos.upload_file(Filename= filepath, Bucket='complaints', Key= TITLE +'.jpg')
@@ -425,10 +426,10 @@ def tickect_update(USERID):
         ibm_db.bind_param(stmt, 1, PROGRESS)
         ibm_db.bind_param(stmt, 2, IMAGE_ID)
         ibm_db.execute(stmt)
-
+        os.mkdir('agentupload')
         basepath=os.path.dirname(__file__) #getting the current path i.e where app.py is present
         #print("current path",basepath)
-        filepath=os.path.join(basepath,'agentuploads','.jpg') #from anywhere in the system we can give image but we want that image later  to process so we are saving it to uploads folder for reusing
+        filepath=os.path.join(basepath,'agentupload','.jpg') #from anywhere in the system we can give image but we want that image later  to process so we are saving it to uploads folder for reusing
         #print("upload folder is",filepath)
         f.save(filepath)
         cos.upload_file(Filename= filepath, Bucket='complaints', Key= IMAGE_ID +'.jpg')
