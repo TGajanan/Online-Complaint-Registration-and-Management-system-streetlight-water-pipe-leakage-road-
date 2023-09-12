@@ -1,3 +1,4 @@
+#importing necessary libraries
 from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
 import ibm_db
 import re
@@ -9,7 +10,7 @@ from ibm_botocore.client import Config, ClientError
 app = Flask(__name__, template_folder='template')
 app.secret_key = 'a'
 
-
+#database connection
 conn = ibm_db.connect("DATABASE=bludb;HOSTNAME=98538591-7217-4024-b027-8baa776ffad1.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud;PORT=30875;SECURITY=SSL;SSLServerCertificate=DigiCertGlobalRootCA .crt;UID=fnc49721;PWD=oI8YaxBwwrliegJ9", '', '')
 print("connected")
 
